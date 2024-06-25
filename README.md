@@ -86,7 +86,7 @@ So that I can better understand the distribution of upcoming events.
 
 ## Installation
 
-To get started with MeetUP, simply visit the application's website and begin exploring upcoming events in your area.
+To get started with Meet, simply visit the application's website and begin exploring upcoming events in your area.
 
 ## Usage
 
@@ -100,7 +100,7 @@ You can use Meet to:
 
 ## Serverless Functions in Meet
 
-MeetUP uses serverless functions to enhance the efficiency and scalability of its backend processes. Serverless functions are employed to:
+Meet uses serverless functions to enhance the efficiency and scalability of its backend processes. Serverless functions are employed to:
 - **Fetch and Cache Event Data:** Functions periodically fetch the latest event data from external APIs, cache the results, and serve them to users, ensuring the app remains responsive and up-to-date even when offline.
 - **Process User Interactions:** When users filter events by city or change the number of displayed events, serverless functions dynamically fetch and process the relevant data, providing a seamless user experience.
 - **Generate Event Charts:** Serverless functions aggregate and process event data to generate visualizations, such as charts displaying the distribution of upcoming events, without overloading the client-side application.
@@ -109,7 +109,7 @@ This approach ensures that the application remains responsive, scalable, and cos
 
 ## Contributing
 
-If you'd like to contribute to the development of MeetUP, please feel free to submit a pull request or open an issue on the project's [GitHub repository](https://github.com/ffferchavez/meetup).
+If you'd like to contribute to the development of Meet, please feel free to submit a pull request or open an issue on the project's [GitHub repository](https://github.com/ffferchavez/meet).
 
 ## License
 
