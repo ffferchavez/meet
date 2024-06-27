@@ -1,17 +1,16 @@
-import { render } from "@testing-library/react";
-import App from "../App";
+import CitySearch from "./components/CitySearch";
+import EventList from "./components/EventList";
+import NumberOfEvents from "./components/NumberOfEvents";
+import "./App.css";
 
-describe("<App /> component", () => {
-  let AppDOM;
-  beforeEach(() => {
-    AppDOM = render(<App />).container.firstChild;
-  });
+const App = () => {
+  return (
+    <div className="App">
+      <CitySearch />
+      <EventList />
+      <NumberOfEvents />
+    </div>
+  );
+};
 
-  test("renders list of events", () => {
-    expect(AppDOM.querySelector("#event-list")).toBeInTheDocument();
-  });
-
-  test("render CitySearch", () => {
-    expect(AppDOM.querySelector("#city-search")).toBeInTheDocument();
-  });
-});
+export default App;
