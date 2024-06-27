@@ -60,6 +60,12 @@ So that I can better understand the distribution of upcoming events.
 
 ## Scenarios
 
+### Feature 1: Filter Events By City
+
+**Scenario 1:** When user hasn’t searched for a city, show upcoming events from all cities.
+**Scenario 2:** User should see a list of suggestions when they search for a city.
+**Scenario 3:** User can select a city from the suggested list.
+
 ### Feature 2: Show/Hide Event Details
 
 **Scenario 1:** An event element is collapsed by default.
