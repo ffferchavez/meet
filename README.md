@@ -60,20 +60,32 @@ So that I can better understand the distribution of upcoming events.
 
 ## Scenarios
 
+### Feature 1: Filter Events By City
+
+**Scenario 1:** When user hasn’t searched for a city, show upcoming events from all cities.
+
+**Scenario 2:** User should see a list of suggestions when they search for a city.
+
+**Scenario 3:** User can select a city from the suggested list.
+
 ### Feature 2: Show/Hide Event Details
 
 **Scenario 1:** An event element is collapsed by default.
+
 **Scenario 2:** User can expand an event to see details.
+
 **Scenario 3:** User can collapse an event to hide details.
 
 ### Feature 3: Specify Number of Events
 
 **Scenario 1:** When user hasn't specified a number, 32 events are shown by default.
+
 **Scenario 2:** User can change the number of events displayed.
 
 ### Feature 4: Use the App When Offline
 
 **Scenario 1:** Show cached data when there's no internet connection.
+
 **Scenario 2:** Show error when user changes search settings (city, number of events).
 
 ### Feature 5: Add an App Shortcut to the Home Screen
