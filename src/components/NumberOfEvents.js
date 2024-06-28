@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const NumberOfEvents = ({ updateNumberOfEvents }) => {
-  const [numberOfEvents, setNumberOfEvents] = useState(32);
+const NumberOfEvents = ({}) => {
+  const [number, setNumber] = useState(32);
 
-  const handleInputChange = (event) => {
+  const handleInputChanged = (event) => {
     const value = event.target.value;
-    setNumberOfEvents(value);
-    updateNumberOfEvents(value);
+    setNumber(value);
   };
 
   return (
     <div id="number-of-events">
+      <label htmlFor="number-of-events-input">Number of Events: </label>
       <input
-        type="number"
+        type="text"
+        id="number-of-events-input"
         className="number-of-events-input"
-        value={numberOfEvents}
-        onChange={handleInputChange}
+        value={number}
+        onChange={handleInputChanged}
       />
     </div>
   );
