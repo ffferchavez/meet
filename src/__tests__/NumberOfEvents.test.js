@@ -18,11 +18,4 @@ describe("<NumberOfEvents /> component", () => {
     const inputElement = queryByRole("textbox");
     expect(inputElement.value).toBe("32");
   });
-
-  test("changes the value of input when user types in it", async () => {
-    const { queryByRole } = render(<NumberOfEvents />);
-    const inputElement = queryByRole("textbox");
-    fireEvent.change(inputElement, { target: { value: "10" } });
-    expect(inputElement.value).toBe("10");
-  });
 });

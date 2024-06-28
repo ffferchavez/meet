@@ -9,6 +9,7 @@ describe("<CitySearch /> component", () => {
   beforeEach(() => {
     CitySearchComponent = render(<CitySearch allLocations={[]} />);
   });
+
   test("renders text input", () => {
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     expect(cityTextBox).toBeInTheDocument();
@@ -20,10 +21,11 @@ describe("<CitySearch /> component", () => {
     expect(suggestionList).not.toBeInTheDocument();
   });
 
-  test("renders a list of suggestions when city textbox gains focus", async () => {
+  test("renders a list of suggestions when city text box gains focus", async () => {
     const user = userEvent.setup();
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     await user.click(cityTextBox);
+
     const suggestionList = CitySearchComponent.queryByRole("list");
     expect(suggestionList).toBeInTheDocument();
     expect(suggestionList).toHaveClass("suggestions");
