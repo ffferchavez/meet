@@ -36,7 +36,7 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
     const url =
-      "https://www.googleapis.com/calendar/v3/calendars/calendarId/events" +
+      "https://tgdy1rpw4d.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" +
       "/" +
       token;
     const response = await fetch(url);
