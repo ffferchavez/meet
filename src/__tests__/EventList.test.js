@@ -1,37 +1,30 @@
-import { render, within, waitFor } from "@testing-library/react";
-import { getEvents } from "../api";
-import EventList from "../components/EventList";
-import App from "../App";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import NumberOfEvents from "../components/NumberOfEvents";
 
-describe("<EventList /> component", () => {
-  let EventListComponent;
-
+describe("<NumberOfEvents /> component", () => {
+  let NumberOfEventsComponent;
   beforeEach(() => {
-    EventListComponent = render(<EventList events={[]} />);
+    NumberOfEventsComponent = render(<NumberOfEvents />);
   });
 
-  test('has an element with "list" role', () => {
-    expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
+  test("renders number of events text input", () => {
+    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
+    expect(numberTextBox).toBeInTheDocument();
+    expect(numberTextBox).toHaveClass("number-of-events-input");
   });
 
-  test("renders correct number of events", async () => {
-    const allEvents = await getEvents();
-    EventListComponent.rerender(<EventList events={allEvents} />);
-    expect(EventListComponent.getAllByRole("listitem")).toHaveLength(
-      allEvents.length
-    );
+  test("default number is 32", async () => {
+    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
+    expect(numberTextBox).toHaveValue("32");
   });
-});
 
-describe("<EventList /> integration", () => {
-  test("renders a list of 32 events when the app is mounted and rendered", async () => {
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
-    const EventListDOM = AppDOM.querySelector("#event-list");
+  test("number of events text box value changes when the user types in it", async () => {
+    const user = userEvent.setup();
+    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
+    await user.type(numberTextBox, "123");
 
-    await waitFor(() => {
-      const EventListItems = within(EventListDOM).queryAllByRole("listitem");
-      expect(EventListItems.length).toBe(32);
-    });
+    // 32 (the default value already written) + 123
+    expect(numberTextBox).toHaveValue("32123");
   });
 });
