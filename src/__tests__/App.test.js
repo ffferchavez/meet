@@ -1,4 +1,4 @@
-import { render, within } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
 import App from "../App";
@@ -48,6 +48,21 @@ describe("<App /> integration", () => {
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain("Berlin, Germany");
+    });
+  });
+
+  test("renders correct number of events based on user input", async () => {
+    const { getByRole, getAllByTestId } = render(<App />);
+
+    const numberOfEventsInput = getByRole("textbox", {
+      name: "Number of Events",
+    });
+
+    fireEvent.change(numberOfEventsInput, { target: { value: "10" } });
+
+    await waitFor(() => {
+      const eventListItems = getAllByTestId("event-item");
+      expect(eventListItems).toHaveLength(10);
     });
   });
 });
