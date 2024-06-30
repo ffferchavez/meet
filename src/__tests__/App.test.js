@@ -1,4 +1,4 @@
-import { render, within, waitFor } from "@testing-library/react";
+import { render, within, waitFor, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
 import App from "../App";
@@ -53,16 +53,16 @@ describe("<App /> integration", () => {
   });
 
   test("renders correct number of events based on user input", async () => {
-    const { getByRole, getAllByTestId } = render(<App />);
+    const user = userEvent.setup();
+    render(<App />);
 
-    const numberOfEventsInput = getByRole("textbox", {
-      name: "Number of Events",
-    });
+    const numberOfEventsInput = screen.getByLabelText("Number of Events:");
 
-    fireEvent.change(numberOfEventsInput, { target: { value: "10" } });
+    await user.clear(numberOfEventsInput);
+    await user.type(numberOfEventsInput, "10");
 
     await waitFor(() => {
-      const eventListItems = getAllByTestId("event-item");
+      const eventListItems = screen.getAllByRole("listitem");
       expect(eventListItems).toHaveLength(10);
     });
   });
