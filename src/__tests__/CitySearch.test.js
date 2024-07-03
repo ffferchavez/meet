@@ -1,4 +1,4 @@
-import { render, within } from "@testing-library/react";
+import { render, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import App from "../App";
