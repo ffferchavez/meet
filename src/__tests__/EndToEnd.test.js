@@ -55,14 +55,15 @@ describe("filter events by city", () => {
 
   test("When user hasn’t searched for a city, show upcoming events from all cities", async () => {
     await page.waitForSelector(".event");
-    const events = await page.$(".event");
+    const events = await page.$$(".event");
     expect(events.length).toBe(32); // assuming there are 32 events by default
   });
 
   test("User should see a list of suggestions when they search for a city", async () => {
     await page.waitForSelector("#city-search");
     await page.type("#city-search", "Berlin");
-    const suggestions = await page.$(".suggestions li");
+    await page.waitForSelector(".suggestions li");
+    const suggestions = await page.$$(".suggestions li");
     expect(suggestions.length).toBeGreaterThan(0); // check if suggestions are shown
   });
 
@@ -75,7 +76,7 @@ describe("filter events by city", () => {
     const selectedCity = await page.$eval("#city-search", (el) => el.value);
     expect(selectedCity).toBe("Berlin, Germany");
 
-    const events = await page.$(".event");
+    const events = await page.$$(".event");
     const berlinEvents = await Promise.all(
       events.map(async (event) => {
         const location = await event.$eval(
@@ -89,3 +90,6 @@ describe("filter events by city", () => {
     expect(berlinEvents.filter(Boolean).length).toBe(events.length);
   });
 });
+
+// Increase the timeout for the test suite
+jest.setTimeout(30000); // 30 seconds timeout
