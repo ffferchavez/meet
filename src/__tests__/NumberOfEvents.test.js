@@ -4,7 +4,10 @@ import NumberOfEvents from "../components/NumberOfEvents";
 describe("<NumberOfEvents /> component", () => {
   test("renders NumberOfEvents component", () => {
     const { container } = render(
-      <NumberOfEvents updateNumberOfEvents={() => {}} />
+      <NumberOfEvents
+        updateNumberOfEvents={() => {}}
+        setErrorAlertText={() => {}}
+      />
     );
     expect(container.querySelector("#number-of-events")).toBeInTheDocument();
   });
