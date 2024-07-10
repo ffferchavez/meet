@@ -9,7 +9,7 @@ const NumberOfEvents = ({ updateNumberOfEvents, setErrorAlertText }) => {
 
     if (isNaN(value)) {
       setErrorAlertText("Error: The input must be a number.");
-    } else if (value < 0) {
+    } else if (value <= 0) {
       setErrorAlertText("Error: The number of events cannot be negative.");
     } else if (value > 100) {
       setErrorAlertText("Error: The number of events cannot exceed 100.");
