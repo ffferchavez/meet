@@ -46,6 +46,10 @@ const App = () => {
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlertText ? <ErrorAlert text={errorAlertText} /> : null}
       </div>
+      <h1>UPCOMING EVENTS</h1>
+      <h3>
+        Find Interesting Exhibitions, Conferences, Webinars To Attend Globally
+      </h3>
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={setCurrentCity}
