@@ -3,7 +3,7 @@ import EventList from "./components/EventList";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { useEffect, useState } from "react";
 import { extractLocations, getEvents } from "./api";
-import { InfoAlert, ErrorAlert } from "./components/Alert";
+import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert"; // Import WarningAlert
 
 import "./App.css";
 
@@ -14,20 +14,29 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlertText, setErrorAlertText] = useState("");
+  const [warningAlertText, setWarningAlertText] = useState(""); // Add state for warning alert
 
   useEffect(() => {
+    const fetchData = async () => {
+      const allEvents = await getEvents();
+      const filteredEvents =
+        currentCity === "See all cities"
+          ? allEvents
+          : allEvents.filter((event) => event.location === currentCity);
+      setEvents(filteredEvents.slice(0, currentNOE));
+      setAllLocations(extractLocations(allEvents));
+    };
+
+    if (navigator.onLine) {
+      setWarningAlertText(""); // Clear warning alert if online
+    } else {
+      setWarningAlertText(
+        "You are currently offline. The displayed events may not be up to date."
+      ); // Warning alert if offline
+    }
+
     fetchData();
   }, [currentCity, currentNOE]);
-
-  const fetchData = async () => {
-    const allEvents = await getEvents();
-    const filteredEvents =
-      currentCity === "See all cities"
-        ? allEvents
-        : allEvents.filter((event) => event.location === currentCity);
-    setEvents(filteredEvents.slice(0, currentNOE));
-    setAllLocations(extractLocations(allEvents));
-  };
 
   const handleNumberOfEventsChange = (numberOfEvents) => {
     if (isNaN(numberOfEvents)) {
@@ -45,6 +54,7 @@ const App = () => {
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlertText ? <ErrorAlert text={errorAlertText} /> : null}
+        {warningAlertText ? <WarningAlert text={warningAlertText} /> : null}
       </div>
       <h1>UPCOMING EVENTS</h1>
       <h3>
