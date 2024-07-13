@@ -3,7 +3,8 @@ import EventList from "./components/EventList";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { useEffect, useState } from "react";
 import { extractLocations, getEvents } from "./api";
-import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert"; // Import WarningAlert
+import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
+import CityEventsChart from "./components/CityEventsChart";
 
 import "./App.css";
 
@@ -14,7 +15,7 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlertText, setErrorAlertText] = useState("");
-  const [warningAlertText, setWarningAlertText] = useState(""); // Add state for warning alert
+  const [warningAlertText, setWarningAlertText] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +29,11 @@ const App = () => {
     };
 
     if (navigator.onLine) {
-      setWarningAlertText(""); // Clear warning alert if online
+      setWarningAlertText("");
     } else {
       setWarningAlertText(
         "You are currently offline. The displayed events may not be up to date."
-      ); // Warning alert if offline
+      );
     }
 
     fetchData();
@@ -69,6 +70,7 @@ const App = () => {
         updateNumberOfEvents={handleNumberOfEventsChange}
         setErrorAlertText={setErrorAlertText}
       />
+      <CityEventsChart allLocations={allLocations} events={events} />
       <EventList events={events} />
     </div>
   );

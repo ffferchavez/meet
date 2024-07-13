@@ -8,7 +8,7 @@ body {
 
 .App {
   text-align: center;
-  padding: 2% 8%;
+  padding: 1% 2%;
 }
 
 .App * {
@@ -135,7 +135,7 @@ h3 {
   color: #333;
   border: none;
   transition: background-color 0.3s, color 0.3s;
-  margin: 5px;
+  margin: 2px;
 }
 
 .details-btn:hover {
